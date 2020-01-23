@@ -1,0 +1,173 @@
+$colors: (
+    black_light: '#515151',
+    blue_light: '#598CFF',
+    grey: '#BCBCBC',
+    grey_dark: '#E9E9E9',
+    grey_light: '#FBFBFB',
+    grey_medium: '#F2F2F2',
+    std_white: '#FFFFFF',
+    transparent: 'transparent',
+);
+
+:root {
+  @each $key, $value in $colors {
+    --#{$key}: #{$value};
+    --fa-primary-color: #1D3C91;
+    --fa-primary-opacity: 1;
+    --fa-secondary-color: #202D50;
+    --fa-secondary-opacity: 1;
+  }
+};
+
+
+// Classes for background and text color
+@each $key, $value in $colors {
+    .#{$key} {
+        background-color: #{$value};
+    }
+    .#{$key}--text {
+        color: #{$value};
+    }
+}
+
+.align-center {
+    display: flex;
+    justify-content: center;
+}
+
+@for $i from 1 through 100 {
+    .br-#{$i} {
+        border-radius: calc(#{$i} * 1px);
+    }
+}
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+// Display
+$display-values: (block, grid, flex, table);
+@each $value in $display-values {
+    .d-#{$value} {
+        display: #{$value};
+    }    
+}
+
+// Flex directions
+.direction-column {
+  flex-direction: column;
+}
+
+.direction-row {
+  flex-direction: row;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+// Font sizes
+@for $i from 1 through 50 {
+  .fs-#{$i} {
+    font-size: calc(#{$i} * 1px);
+  }
+}
+
+// Font weights
+$values-weights: (400, 500, 600, 700, 800);
+@each $value in $values-weights {
+    .fw-#{$value} {
+        font-weight: #{$value};
+    }
+}
+
+// Overflow
+.overflow-x-auto {
+  overflow-x: auto;
+}
+
+// Padding and margin from 0px to 120px
+$directions: (
+  a: 'all',
+  b: 'bottom',
+  l: 'left',
+  r: 'right',
+  t: 'top',
+  h: 'horizontal',
+  v: 'vertical',
+);
+@for $i from 0 through 30 {
+  @each $key, $value in $directions {
+    .p#{$key}-#{$i} {
+      @if $key == a {
+        padding: calc(#{$i} * 4px);
+      } @else if $key == v {
+        padding-top: calc(#{$i} * 4px);
+        padding-bottom: calc(#{$i} * 4px);
+      } @else if $key == h {
+        padding-left: calc(#{$i} * 4px);
+        padding-right: calc(#{$i} * 4px);
+      } @else {
+        padding-#{$value}: calc(#{$i} * 4px);
+      }
+    }
+    .m#{$key}-#{$i} {
+      @if $key == a {
+        margin: calc(#{$i} * 4px);
+      } @else if $key == v {
+        margin-top: calc(#{$i} * 4px);
+        margin-bottom: calc(#{$i} * 4px);
+      } @else if $key == h {
+        margin-left: calc(#{$i} * 4px);
+        margin-right: calc(#{$i} * 4px);
+      } @else {
+        margin-#{$value}: calc(#{$i} * 4px);
+      }
+    }
+
+    .m#{$key}-n#{$i} {
+      @if $key == a {
+        margin: calc(#{$i} * -4px);
+      } @else if $key == v {
+        margin-top: calc(#{$i} * -4px);
+        margin-bottom: calc(#{$i} * -4px);
+      } @else if $key == h {
+        margin-left: calc(#{$i} * -4px);
+        margin-right: calc(#{$i} * -4px);
+      } @else {
+        margin-#{$value}: calc(#{$i} * -4px);
+      }
+    }
+  }
+};
+
+// Text align
+$values: (left, center, right);
+@each $value in $values {
+    .text-align-#{$value} {
+        text-align: #{$value};
+    }
+}
+
+// Text transforms
+$transform-values:(uppercase, lowercase);
+@each $value in $transform-values {
+  .#{$value} {
+    text-transform: #{$value};
+  }
+}
+
+// Width
+@for $i from 1 through 100 {
+    .width-#{$i} {
+        width: calc(#{$i} * 1%);
+    }
+}
