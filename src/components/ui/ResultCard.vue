@@ -1,6 +1,7 @@
 <template lang="pug">
 .card_container.grey_medium.br-4.pv-2
-  .row.ph-2.fs-20.uppercase.mb-10 {{ title ? title : '-'}}
+  .row.fs-20.uppercase.mb-10
+    .ph-2 {{ title ? title : '-'}}
   slot(name='content')
 </template>
 

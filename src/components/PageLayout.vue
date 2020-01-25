@@ -1,21 +1,30 @@
 <template lang="pug">
-.container.ph-4
-  .row.align-center.mv-4
-    slot(name='request-form')
-  .row.align-center
-    slot(name='request-status')
-  .row.overflow-x-auto.mt-4
-    slot(name='request-results')
-  .row.mt-8.align-center
-    .direction-column
-      .fs-20.uppercase.text-align-center.mb-2 Share
-      .ph-4.pv-1.grey_medium.br-20.text-align-center {{ shareLink ? shareLink : '-' }}
+div
+  .container.ph-4(style='max-height: 100%; overflow-y: auto')
+    .row.align-center.mv-4
+      slot(name='request-form')
+    .row.align-center
+      slot(name='request-status')
+    .row.overflow-x-auto.mt-4
+      slot(name='request-results')
+    .row.mt-8.align-center
+      .direction-column
+        .fs-20.uppercase.text-align-center.mb-2 Share
+        .ph-4.pv-1.grey_medium.br-20.text-align-center {{ shareLink ? shareLink : '-' }}
+  BottomSheet
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-@Component
+// Components
+import BottomSheet from './BottomSheet.vue';
+
+@Component({
+  components: {
+    BottomSheet,
+  },
+})
 export default class PageLayout extends Vue {
   @Prop() shareLink!: string;
 }

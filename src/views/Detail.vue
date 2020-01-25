@@ -24,13 +24,13 @@ import { AxiosResponse } from 'axios';
 import { Component, Vue } from 'vue-property-decorator';
 
 // Components
-import PageLayout from '../components/PageLayout.vue';
-import Search from '../components/Search.vue';
-import ResultCard from '../components/ui/ResultCard.vue';
-import ResultCardRow from '../components/ui/ResultCardRow.vue';
+import PageLayout from 'src/components/PageLayout.vue';
+import Search from 'src/components/Search.vue';
+import ResultCard from 'src/components/ui/ResultCard.vue';
+import ResultCardRow from 'src/components/ui/ResultCardRow.vue';
 
 // Repository
-import repository from '../repositories/repository';
+import repository from 'src/repositories/repository';
 
 @Component({
   components: {
