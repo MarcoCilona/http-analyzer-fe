@@ -22,6 +22,8 @@ const swipe = Vue.directive('swipe', {
       // eslint-disable-next-line no-param-reassign
       el.style.transition = '';
       startingPosition = $event.touches[0].clientY;
+    }, {
+      passive: false
     });
 
     el.addEventListener('touchmove', ($event: TouchEvent) => {
@@ -35,6 +37,8 @@ const swipe = Vue.directive('swipe', {
       }
       // eslint-disable-next-line no-param-reassign
       el.style.top = `${newTopPosition}px`;
+    }, {
+      passive: false
     });
   },
 });

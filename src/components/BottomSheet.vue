@@ -20,7 +20,7 @@ export default class BottomSheet extends Vue {
   height: 100%;
   left: 0;
   min-height: 100px;
-  overscroll-behavior: contain;
+  overscroll-behavior: none;
   position: fixed;
   top: 0;
   width: 98%;
