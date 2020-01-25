@@ -4,7 +4,7 @@ const swipe = Vue.directive('swipe', {
   bind: (el: HTMLElement, binding: any) => {
     let startingPosition: number = 0;
     let difference: number = 0;
-    const bottomOffset: number = 80;
+    const bottomOffset: number = 100;
     const elementStartingPosition: number = window.innerHeight - bottomOffset;
 
     // eslint-disable-next-line no-param-reassign

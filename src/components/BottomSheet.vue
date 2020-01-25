@@ -16,12 +16,21 @@ export default class BottomSheet extends Vue {
 <style lang="scss" scoped>
 .bottom-sheet {
   border: 1px solid var(--grey_medium);
+  display: block;
   height: 100%;
   left: 0;
   min-height: 100px;
+  overscroll-behavior: contain;
   position: fixed;
   top: 0;
+  width: 98%;
   z-index: 3;
   cursor: pointer;
+}
+
+@media only screen and (min-width: 425px) {
+  .bottom-sheet {
+    display: none;
+  }
 }
 </style>
