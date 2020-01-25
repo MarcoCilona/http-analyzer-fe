@@ -12,6 +12,8 @@ div
         .fs-20.uppercase.text-align-center.mb-2 Share
         .ph-4.pv-1.grey_medium.br-20.text-align-center {{ shareLink ? shareLink : '-' }}
   BottomSheet
+    template(#content)
+      Speedometer
 </template>
 
 <script lang="ts">
@@ -19,11 +21,13 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 // Components
 import BottomSheet from './BottomSheet.vue';
+import Speedometer from './ui/Speedometer.vue';
 
 @Component({
   components: {
     BottomSheet,
-  },
+    Speedometer
+  }
 })
 export default class PageLayout extends Vue {
   @Prop() shareLink!: string;

@@ -2,6 +2,7 @@
 .bottom-sheet.br-10.pa-4.width-99.std_white(v-swipe)
   .row.align-center
     .ph-20.grey_medium.pv-1.br-4
+  slot(name='content')
 </template>
 
 <script lang="ts">
