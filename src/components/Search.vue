@@ -1,7 +1,7 @@
 <template lang="pug">
 .grey_medium.pa-2.br-4.width-80.d-flex.search-bar
-  Select(@selected='method=$event')
-  Input.mh-4(@change='url=$event')
+  Select(@selected='method = $event')
+  Input.mh-4(@change='url = $event')
   Button(v-if='!hideSubmitButton', @send-request='handleSendRequest')
 </template>
 
@@ -24,11 +24,15 @@ export default class Search extends Vue {
   @Prop({ type: Boolean }) hideSubmitButton?: boolean;
   method: string = '';
   url?: string = '';
+  handleSelected($event: any) {
+    this.method = $event;
+  }
   handleSendRequest() {
     const request: any = {
       method: this.method,
       url: this.url,
     };
+
     this.$emit('submit', request);
   }
 }

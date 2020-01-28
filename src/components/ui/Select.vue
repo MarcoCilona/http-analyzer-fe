@@ -34,6 +34,10 @@ export default class Select extends Vue {
       value: 'DUMB',
     },
   ];
+
+  created() {
+    this.$emit('selected', this.httpMethods[0].value);
+  }
 }
 </script>
 

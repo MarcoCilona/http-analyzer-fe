@@ -19,7 +19,6 @@ const swipe = Vue.directive('swipe', {
     });
 
     el.addEventListener('touchstart', ($event: TouchEvent) => {
-      $event.preventDefault();
       // eslint-disable-next-line no-param-reassign
       el.style.transition = '';
       startingPosition = $event.touches[0].clientY;

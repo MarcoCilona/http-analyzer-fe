@@ -11,7 +11,7 @@ div
       .direction-column
         .fs-20.uppercase.text-align-center.mb-2 Share
         .ph-4.pv-1.grey_medium.br-20.text-align-center {{ shareLink ? shareLink : '-' }}
-  BottomSheet
+  BottomSheet(v-if='showBottomSheet')
     template(#content)
       .mt-10.ph-5.fs-24.grey--text.fw-700
         .row.mb-10 Timing analysis
@@ -38,6 +38,7 @@ import Speedometer from './ui/Speedometer.vue';
 })
 export default class PageLayout extends Vue {
   @Prop() shareLink!: string;
+  @Prop({ type: Boolean }) showBottomSheet?: boolean;
 }
 </script>
 

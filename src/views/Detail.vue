@@ -1,42 +1,24 @@
 <template lang="pug">
-PageLayout(:share-link='shareLink')
+PageLayout(:share-link='shareLink', :show-bottom-sheet='!!requestId')
   template(#request-form)
     Search(hide-submit-button)
-  template(#request-status)
-    .column
-      .text-align-center.fs-45.fw-700 200
-      div Everything is fine!
   template(#request-results)
-    ResultCard(title='Url info')
-      template(#content)
-        ResultCardRow(title='Domain', value='www.google.it')
-        ResultCardRow(title='Scheme', value='HTTP')
-        ResultCardRow(title='Path', value='home')
-    ResultCard.ml-5(title='Url info')
-      template(#content)
-        ResultCardRow(title='Domain', value='www.google.it')
-        ResultCardRow(title='Scheme', value='HTTP')
-        ResultCardRow(title='Path', value='home')
+    Results(:id-request='requestId')
 </template>
 
 <script lang="ts">
-import { AxiosResponse } from 'axios';
 import { Component, Vue } from 'vue-property-decorator';
 
 // Components
 import PageLayout from 'src/components/PageLayout.vue';
 import Search from 'src/components/Search.vue';
-import ResultCard from 'src/components/ui/ResultCard.vue';
-import ResultCardRow from 'src/components/ui/ResultCardRow.vue';
+import Results from './Results.vue';
 
-// Repository
-import repository from 'src/repositories/repository';
 
 @Component({
   components: {
     PageLayout,
-    ResultCard,
-    ResultCardRow,
+    Results,
     Search,
   },
 })
@@ -45,13 +27,7 @@ export default class Detail extends Vue {
   shareLink?: string = '';
   created() {
     this.requestId = this.$route.params.idRequest;
-    this.retrieveRequest();
     this.shareLink = `${window.location.origin}/${this.requestId}`;
-  }
-  retrieveRequest() {
-    repository.getRequest(this.requestId).then((response: AxiosResponse<any>) => {
-      console.log(response.data);
-    });
   }
 }
 </script>

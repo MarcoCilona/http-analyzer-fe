@@ -1,7 +1,7 @@
 <template lang="pug">
 .row.grey_dark
   .pa-2.direction-column.black_light--text
-    .fs-20.uppercase.fw-600 {{ title ? title : '-' }}
+    .fs-20.uppercase.fw-600(v-if='!hideTitle') {{ title ? title : '-' }}
     .fs-14 {{ value ? value: '-' }}
 </template>
 
@@ -12,6 +12,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class ResultCardRow extends Vue {
   @Prop() title!: string;
   @Prop() value!: string;
+  @Prop({ type: Boolean }) hideTitle?: boolean;
 }
 </script>
 
