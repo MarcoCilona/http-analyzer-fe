@@ -27,7 +27,7 @@ export default class Detail extends Vue {
   shareLink?: string = '';
   created() {
     this.requestId = this.$route.params.idRequest;
-    this.shareLink = `${window.location.origin}/${this.requestId}`;
+    this.shareLink = `${window.location.href}/${this.requestId}`;
   }
 }
 </script>
