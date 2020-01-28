@@ -1,5 +1,5 @@
 <template lang="pug">
-.bottom-sheet.br-10.pa-4.width-99.std_white(v-swipe)
+.bottom-sheet.br-10.pv-4.std_white.fill-width(v-swipe)
   .row.align-center
     .ph-20.grey_medium.pv-1.br-4
   slot(name='content')
@@ -24,7 +24,6 @@ export default class BottomSheet extends Vue {
   overscroll-behavior: none;
   position: fixed;
   top: 0;
-  width: 98%;
   z-index: 3;
   cursor: pointer;
 }

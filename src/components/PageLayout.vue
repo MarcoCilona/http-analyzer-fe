@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  .container.ph-4(style='max-height: 100%; overflow-y: auto')
+  .container.ph-4(style='max-height: calc(100% - 70px); overflow-y: auto')
     .row.align-center.mv-4
       slot(name='request-form')
     .row.align-center
@@ -13,7 +13,14 @@ div
         .ph-4.pv-1.grey_medium.br-20.text-align-center {{ shareLink ? shareLink : '-' }}
   BottomSheet
     template(#content)
-      Speedometer
+      .mt-10.ph-5.fs-24.grey--text.fw-700
+        .row.mb-10 Timing analysis
+        Speedometer(value='500', key=0)
+        .row.mt-2.align-center Page load
+        .row.mt-2.align-center.black_light--text 500s
+        Speedometer(value='650', key=1)
+        .row.mt-2.align-center First interaction
+        .row.mt-2.align-center.black_light--text 650s
 </template>
 
 <script lang="ts">

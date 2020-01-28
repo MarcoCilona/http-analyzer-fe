@@ -56,7 +56,7 @@ $display-values: (block, grid, flex, table);
 @each $value in $display-values {
     .d-#{$value} {
         display: #{$value};
-    }    
+    }
 }
 
 // Flex directions
@@ -170,4 +170,13 @@ $transform-values:(uppercase, lowercase);
     .width-#{$i} {
         width: calc(#{$i} * 1%);
     }
+}
+
+// Filling classes
+.fill-width {
+  width: 100%
+}
+
+.fill-height {
+  height: 10%;
 }

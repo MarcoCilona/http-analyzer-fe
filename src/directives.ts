@@ -4,7 +4,7 @@ const swipe = Vue.directive('swipe', {
   bind: (el: HTMLElement, binding: any) => {
     let startingPosition: number = 0;
     let difference: number = 0;
-    const bottomOffset: number = 100;
+    const bottomOffset: number = 50;
     const elementStartingPosition: number = window.innerHeight - bottomOffset;
 
     // eslint-disable-next-line no-param-reassign
@@ -19,6 +19,7 @@ const swipe = Vue.directive('swipe', {
     });
 
     el.addEventListener('touchstart', ($event: TouchEvent) => {
+      $event.preventDefault();
       // eslint-disable-next-line no-param-reassign
       el.style.transition = '';
       startingPosition = $event.touches[0].clientY;
@@ -27,6 +28,7 @@ const swipe = Vue.directive('swipe', {
     });
 
     el.addEventListener('touchmove', ($event: TouchEvent) => {
+      $event.preventDefault();
       difference = startingPosition - $event.touches[0].clientY;
       startingPosition = $event.touches[0].clientY;
       const currentTop: number = el.getBoundingClientRect().top;
