@@ -1,5 +1,5 @@
 <template lang="pug">
-router-view(:key='$route.fullPath', style='height: 100vh')
+router-view(:key='$route.fullPath', style='height: 800px')
 </template>
 
 <script lang="ts">
@@ -20,7 +20,7 @@ export default class App extends Vue {}
 
 body {
   font-family: Arial, Helvetica, sans-serif;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 
 </style>
