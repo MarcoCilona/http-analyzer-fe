@@ -63,7 +63,7 @@ export default class HomePage extends Vue {
     this.prepareWebRequest($event);
     repository.submitRequest(this.webRequest).then((response: AxiosResponse<any>) => {
       [this.requestId] = response.data.uri.split(/\//).reverse();
-      this.shareLink = `${window.location.origin}/#/${this.requestId}`;
+      this.shareLink = `${window.location.href}${this.requestId}`;
     });
   }
 

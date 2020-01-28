@@ -1,6 +1,6 @@
 <template lang="pug">
 div
-  .container.ph-4(style='max-height: calc(100% - 70px); overflow-y: auto')
+  .container.ph-4.results-container(style='overflow-y: auto')
     .row.align-center.mv-4
       slot(name='request-form')
     .row.align-center
@@ -52,6 +52,10 @@ export default class PageLayout extends Vue {
   }
 }
 
+.results-container {
+  max-height: calc(100% - 70px);
+}
+
 @media only screen and (min-width: 425px) {
   .container {
     .row:nth-child(1) {
@@ -60,6 +64,9 @@ export default class PageLayout extends Vue {
     .row:nth-child(2) {
       order: 1;
     }
+  }
+  .results-container {
+    max-height: 100%;
   }
 }
 </style>
