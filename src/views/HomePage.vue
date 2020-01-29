@@ -1,5 +1,5 @@
 <template lang="pug">
-PageLayout(:share-link='shareLink', :show-bottom-sheet='!!requestId')
+PageLayout(:share-link='shareLink')
   template(#request-form)
     Search(@submit='handleSubmit')
   template(v-if='requestId', #request-status)
@@ -77,6 +77,8 @@ export default class HomePage extends Vue {
     }
     this.webRequest = {
       data: {
+        first_interaction: 700,
+        page_load: 500,
         request: {
           domain: request.url,
           method: request.method,

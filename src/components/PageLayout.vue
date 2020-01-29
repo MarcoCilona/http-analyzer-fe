@@ -11,31 +11,12 @@ div
       .direction-column
         .fs-20.uppercase.text-align-center.mb-2 Share
         .ph-4.pv-1.grey_medium.br-20.text-align-center {{ shareLink ? shareLink : '-' }}
-  BottomSheet(v-if='showBottomSheet')
-    template(#content)
-      .mt-10.ph-5.fs-24.grey--text.fw-700
-        .row.mb-10 Timing analysis
-        Speedometer(value='500', key=0)
-        .row.mt-2.align-center Page load
-        .row.mt-2.align-center.black_light--text 500s
-        Speedometer(value='650', key=1)
-        .row.mt-2.align-center First interaction
-        .row.mt-2.align-center.black_light--text 650s
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-// Components
-import BottomSheet from './BottomSheet.vue';
-import Speedometer from './ui/Speedometer.vue';
-
-@Component({
-  components: {
-    BottomSheet,
-    Speedometer
-  }
-})
+@Component
 export default class PageLayout extends Vue {
   @Prop() shareLink!: string;
   @Prop({ type: Boolean }) showBottomSheet?: boolean;

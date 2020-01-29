@@ -1,5 +1,12 @@
 <template lang="pug">
-canvas(ref='myCanvas' height='180')
+div(style='position: relative')
+  span.fs-14(ref='bad', style='position: relative') 600
+  span.fs-14(ref='medium', style='position: relative') 700
+  span.fs-14(ref='good', style='position: relative') 800
+  canvas(ref='myCanvas' height='180')
+  .direction-column.value.std_black--text.fill-width.align-center.fill-height.fw-600
+    .fs-30.text-align-center {{ value }}
+    .fs-25.text-align-center {{ valueText }}
 </template>
 
 <script lang="ts">
@@ -17,7 +24,7 @@ export default class Speedometer extends Vue {
   degreeValue: number = 1000 / 253;
   endingAngle = 0.2 * Math.PI;
   graphRadius: number = 80;
-  rangeMap: any = [];
+  rangeMap: any[] = [];
   startingAngle = 0.8 * Math.PI;
   positionX: number = 0;
   positionY: number = 0;
@@ -41,6 +48,22 @@ export default class Speedometer extends Vue {
     },
   ];
 
+  get valueText() {
+    if (this.value < 600) {
+      return 'Bad!';
+    }
+
+    if (this.value < 700) {
+      return 'Not bad!';
+    }
+
+    if (this.value < 800) {
+      return 'Great!';
+    }
+
+    return 'Awesome!';
+  }
+
   mounted() {
     this.c = this.$refs.myCanvas;
     this.c.style.width = '100%';
@@ -55,6 +78,7 @@ export default class Speedometer extends Vue {
     this.generateFirstRangeValuesCoordinates();
     this.generateSecondRangeValuesCoordinates();
     this.drawCircle();
+    this.drawLabels();
   }
 
   drawGoodValueArc() {
@@ -71,6 +95,20 @@ export default class Speedometer extends Vue {
     this.ctx.strokeStyle = 'red';
     this.ctx.arc(this.positionX, this.positionY, this.graphRadius, this.startingAngle, 1.5 * Math.PI);
     this.ctx.stroke();
+  }
+
+  drawLabels() {
+    // Low range values
+    (this.$refs.bad as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (600 * 100) / 1000).y - 10}px`;
+    (this.$refs.bad as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (600 * 100) / 1000).x - 10}px`;
+
+    // Medium range values
+    (this.$refs.medium as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (700 * 100) / 1000).y + 10}px`;
+    (this.$refs.medium as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (700 * 100) / 1000).x + 10}px`;
+
+    // Good range values
+    (this.$refs.good as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (800 * 100) / 1000).y + 55}px`;
+    (this.$refs.good as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (800 * 100) / 1000).x - 10}px`;
   }
 
   drawMediumValueArc() {
@@ -162,3 +200,11 @@ export default class Speedometer extends Vue {
   }
 }
 </script>
+
+
+<style lang="scss" scoped>
+.value {
+  position: absolute;
+  top: 20px;
+}
+</style>

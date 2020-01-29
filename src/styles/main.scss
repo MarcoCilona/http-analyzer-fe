@@ -6,6 +6,7 @@ $colors: (
     grey_light: '#FBFBFB',
     grey_medium: '#F2F2F2',
     std_white: '#FFFFFF',
+    std_black: '#000000',
     transparent: 'transparent',
 );
 
@@ -178,5 +179,5 @@ $transform-values:(uppercase, lowercase);
 }
 
 .fill-height {
-  height: 10%;
+  height: 100%;
 }
