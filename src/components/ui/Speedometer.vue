@@ -100,8 +100,8 @@ export default class Speedometer extends Vue {
 
   drawLabels() {
     // Low range values
-    (this.$refs.bad as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (600 * 100) / 1000).y - 10}px`;
-    (this.$refs.bad as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (600 * 100) / 1000).x - 10}px`;
+    (this.$refs.bad as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (600 * 100) / 1000).y - 20}px`;
+    (this.$refs.bad as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (600 * 100) / 1000).x - 40}px`;
 
     // Medium range values
     (this.$refs.medium as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (700 * 100) / 1000).y + 10}px`;
