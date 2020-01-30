@@ -1,9 +1,9 @@
 <template lang="pug">
-div(style='position: relative')
+div(ref='canvasWrapper' style='position: relative')
   span.fs-14(ref='bad', style='position: relative') 600
   span.fs-14(ref='medium', style='position: relative') 700
   span.fs-14(ref='good', style='position: relative') 800
-  canvas(ref='myCanvas' height='180')
+  canvas(ref='myCanvas' height='200')
   .direction-column.value.std_black--text.fill-width.align-center.fill-height.fw-600
     .fs-30.text-align-center {{ value }}
     .fs-25.text-align-center {{ valueText }}
@@ -66,8 +66,9 @@ export default class Speedometer extends Vue {
 
   mounted() {
     this.c = this.$refs.myCanvas;
-    this.c.style.width = '100%';
-    this.positionX = (window.innerWidth / 2) - this.graphRadius / 2;
+    const width = `${(this.$refs.canvasWrapper as HTMLElement).getBoundingClientRect().width}`;
+    (this.c as HTMLElement).setAttribute('width', width);
+    this.positionX = (+width / 2);
     this.positionY = ((this.c as HTMLElement).getBoundingClientRect().height / 2);
     this.ctx = this.c!.getContext('2d');
 
@@ -104,11 +105,11 @@ export default class Speedometer extends Vue {
 
     // Medium range values
     (this.$refs.medium as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (700 * 100) / 1000).y + 10}px`;
-    (this.$refs.medium as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (700 * 100) / 1000).x + 10}px`;
+    (this.$refs.medium as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (700 * 100) / 1000).x}px`;
 
     // Good range values
-    (this.$refs.good as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (800 * 100) / 1000).y + 55}px`;
-    (this.$refs.good as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (800 * 100) / 1000).x - 10}px`;
+    (this.$refs.good as HTMLElement).style!.top = `${this.rangeMap.find((el: any) => el.percentage === (800 * 100) / 1000).y + 40}px`;
+    (this.$refs.good as HTMLElement).style!.left = `${this.rangeMap.find((el: any) => el.percentage === (800 * 100) / 1000).x - 30}px`;
   }
 
   drawMediumValueArc() {
