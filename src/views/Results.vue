@@ -33,9 +33,9 @@ import repository from 'src/repositories/repository';
 
 // Components
 import BottomSheet from 'src/components/BottomSheet.vue';
-import ResultCard from 'src/components/ui/ResultCard.vue';
-import ResultCardRow from 'src/components/ui/ResultCardRow.vue';
-import Speedometer from 'src/components/ui/Speedometer.vue';
+import ResultCard from 'src/components/ResultCard.vue';
+import ResultCardRow from 'src/components/ResultCardRow.vue';
+import Speedometer from 'src/components/Speedometer.vue';
 
 @Component({
   components: {

@@ -24,9 +24,11 @@ export default class Search extends Vue {
   @Prop({ type: Boolean }) hideSubmitButton?: boolean;
   method: string = '';
   url?: string = '';
+
   handleSelected($event: any) {
     this.method = $event;
   }
+
   handleSendRequest() {
     const request: any = {
       method: this.method,

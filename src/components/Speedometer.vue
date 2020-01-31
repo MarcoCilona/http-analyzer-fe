@@ -65,11 +65,17 @@ export default class Speedometer extends Vue {
   }
 
   mounted() {
+    // Retrieving canvas element
     this.c = this.$refs.myCanvas;
+    // Setting canvas element width equal to parent size
     const width = `${(this.$refs.canvasWrapper as HTMLElement).getBoundingClientRect().width}`;
     (this.c as HTMLElement).setAttribute('width', width);
+
+    // Setting the center position of the circles
     this.positionX = (+width / 2);
     this.positionY = ((this.c as HTMLElement).getBoundingClientRect().height / 2);
+
+    // Creating context
     this.ctx = this.c!.getContext('2d');
 
     this.drawLowValueArc();
@@ -178,7 +184,10 @@ export default class Speedometer extends Vue {
     });
 
     const value: number = (this.value * 100) / 1000;
+
+    // Finding the coordinates of the circle representing the value by retrieving the closest percentage saved along the arc
     const valuedFound = this.rangeMap.reduce((prev: any, current: any) => (Math.abs(current.percentage - value) < Math.abs(prev.percentage - value) ? current : prev));
+
     this.ctx.beginPath();
     this.ctx.lineWidth = 10;
     this.ctx.strokeStyle = circleColor;

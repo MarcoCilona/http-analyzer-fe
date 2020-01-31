@@ -63,12 +63,17 @@ export default class HomePage extends Vue {
 
   handleSubmit($event: any) {
     this.prepareWebRequest($event);
+
+    // Calling POST api to save the request information
     repository.submitRequest(this.webRequest).then((response: AxiosResponse<any>) => {
       [this.requestId] = response.data.uri.split(/\//).reverse();
       this.shareLink = `${window.location.href}${this.requestId}`;
     });
   }
 
+  /*
+  * This method is called to create a fake request response to be shown in application
+  */
   prepareWebRequest(request: any) {
     this.webRequest = generateRequest(request);
     this.status = this.webRequest.status;
