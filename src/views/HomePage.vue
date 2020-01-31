@@ -6,15 +6,15 @@ PageLayout(:share-link='shareLink')
     .column
       .text-align-center.fs-45.fw-700 {{ status }}
       div {{ statusMessage }}
-  template(v-if='requestId', #request-results)
-    Results(:id-request='requestId')
+  template(v-if='requestId && idSpeedRequest', #request-results)
+    Results(:id-request='requestId', :id-speed-request='idSpeedRequest')
 </template>
 
 <script lang="ts">
 import { AxiosResponse } from 'axios';
 import { Component, Vue } from 'vue-property-decorator';
 
-import { generateRequest } from 'src/utils';
+import { generateRequest, generateSpeedRequest } from 'src/utils';
 
 // Components
 import PageLayout from 'src/components/PageLayout.vue';
@@ -32,6 +32,7 @@ import repository from 'src/repositories/repository';
   },
 })
 export default class HomePage extends Vue {
+  idSpeedRequest?: string = '';
   requestId?: string = '';
   shareLink?: string = '';
   status?: number = 0;
@@ -68,6 +69,10 @@ export default class HomePage extends Vue {
     repository.submitRequest(this.webRequest).then((response: AxiosResponse<any>) => {
       [this.requestId] = response.data.uri.split(/\//).reverse();
       this.shareLink = `${window.location.href}${this.requestId}`;
+    });
+
+    repository.submitSpeedometer(generateSpeedRequest()).then((response: AxiosResponse<any>) => {
+      [this.idSpeedRequest] = response.data.uri.split(/\//).reverse();
     });
   }
 

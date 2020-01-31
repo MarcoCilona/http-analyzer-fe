@@ -33,8 +33,6 @@ export function generateRequest(request: any) {
 
   return {
     data: {
-      first_interaction: Math.floor(Math.random() * 1000) + 1,
-      page_load: Math.floor(Math.random() * 1000) + 1,
       request: {
         domain: request.url,
         method: request.method,
@@ -46,5 +44,12 @@ export function generateRequest(request: any) {
     },
     errors: {},
     status
+  };
+}
+
+export function generateSpeedRequest() {
+  return {
+    first_interaction: 120,
+    page_load: 720,
   };
 }

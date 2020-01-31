@@ -8,7 +8,13 @@ export default {
   getRequest(requestHashCode: string): AxiosPromise<any> {
     return repository.get(`/${requestHashCode}`);
   },
+  getSpeed(requestHashCode: string): AxiosPromise<any> {
+    return repository.get(`/${requestHashCode}`);
+  },
   submitRequest(request: any): AxiosPromise<any> {
+    return repository.post('', request);
+  },
+  submitSpeedometer(request: any): AxiosPromise<any> {
     return repository.post('', request);
   },
 };

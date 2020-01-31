@@ -1,5 +1,5 @@
 <template lang="pug">
-.row(v-if='results')
+.row(v-if='results && speedResults')
   ResultCard(title='Url info')
     template(#content)
       ResultCardRow(title='Domain', :value='results.data.request.domain')
@@ -14,12 +14,12 @@
     template(#content)
       .mt-10.ph-5.fs-24.grey--text.fw-700
         .row.mb-10 Timing analysis
-        Speedometer(:value='results.data.page_load', :key='results.data.page_load')
+        Speedometer(:value='speedResults.page_load', :key='speedResults.page_load')
         .row.mt-2.align-center Page load
-        .row.mt-2.align-center.black_light--text {{ results.data.page_load / 1000 }}s
-        Speedometer(:value='results.data.first_interaction', :key='results.data.first_interaction')
+        .row.mt-2.align-center.black_light--text {{ speedResults.page_load / 1000 }}s
+        Speedometer(:value='speedResults.first_interaction', :key='speedResults.first_interaction')
         .row.mt-2.align-center First interaction
-        .row.mt-2.align-center.black_light--text {{ results.data.first_interaction / 1000 }}s
+        .row.mt-2.align-center.black_light--text {{ speedResults.first_interaction / 1000 }}s
 </template>
 
 <script lang="ts">
@@ -47,12 +47,18 @@ import Speedometer from 'src/components/Speedometer.vue';
 })
 export default class Results extends Vue {
   @Prop() idRequest!: string;
+  @Prop() idSpeedRequest!: string;
 
   results: any = null;
+  speedResults: any = null;
 
   created() {
     repository.getRequest(this.idRequest).then((response: AxiosResponse<any>) => {
       this.results = response.data;
+    });
+
+    repository.getSpeed(this.idSpeedRequest).then((response: AxiosResponse<any>) => {
+      this.speedResults = response.data;
     });
   }
 

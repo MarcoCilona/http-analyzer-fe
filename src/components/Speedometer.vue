@@ -186,7 +186,7 @@ export default class Speedometer extends Vue {
     const value: number = (this.value * 100) / 1000;
 
     // Finding the coordinates of the circle representing the value by retrieving the closest percentage saved along the arc
-    const valuedFound = this.rangeMap.reduce((prev: any, current: any) => (Math.abs(current.percentage - value) < Math.abs(prev.percentage - value) ? current : prev));
+    const valuedFound = this.rangeMap.reduceRight((prev: any, current: any) => (Math.abs(current.percentage - value) < Math.abs(prev.percentage - value) ? current : prev));
 
     this.ctx.beginPath();
     this.ctx.lineWidth = 10;
