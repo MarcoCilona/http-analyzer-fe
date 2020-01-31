@@ -24,7 +24,9 @@
 
 <script lang="ts">
 import { AxiosResponse } from 'axios';
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import {
+  Component, Prop, Vue, Watch
+} from 'vue-property-decorator';
 
 // Repositories
 import repository from 'src/repositories/repository';
@@ -49,6 +51,13 @@ export default class Results extends Vue {
   results: any = null;
 
   created() {
+    repository.getRequest(this.idRequest).then((response: AxiosResponse<any>) => {
+      this.results = response.data;
+    });
+  }
+
+  @Watch('idRequest')
+  updateResults() {
     repository.getRequest(this.idRequest).then((response: AxiosResponse<any>) => {
       this.results = response.data;
     });

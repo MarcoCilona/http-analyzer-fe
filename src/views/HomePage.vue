@@ -14,6 +14,8 @@ PageLayout(:share-link='shareLink')
 import { AxiosResponse } from 'axios';
 import { Component, Vue } from 'vue-property-decorator';
 
+import { generateRequest } from 'src/utils';
+
 // Components
 import PageLayout from 'src/components/PageLayout.vue';
 import Results from 'src/views/Results.vue';
@@ -68,36 +70,8 @@ export default class HomePage extends Vue {
   }
 
   prepareWebRequest(request: any) {
-    const randomStatusCode: number = Math.random();
-    this.status = 200;
-    if (randomStatusCode < 0.3) {
-      this.status = 500;
-    } else if (randomStatusCode < 0.6) {
-      this.status = 404;
-    }
-    this.webRequest = {
-      data: {
-        first_interaction: 700,
-        page_load: 500,
-        request: {
-          domain: request.url,
-          method: request.method,
-          path: request.url.split(/\//)[1],
-          scheme: 'HTTP',
-        },
-        response: [{
-          http_version_string: 'HTTP/1.1',
-          reason: 'OK',
-          request_date: 'Thu, 23 Jan 2020',
-          request_server: 'gws',
-          status_code: this.status,
-          url: request.url,
-        }],
-        url: request.url,
-      },
-      errors: {},
-      status: this.status,
-    };
+    this.webRequest = generateRequest(request);
+    this.status = this.webRequest.status;
   }
 }
 </script>
