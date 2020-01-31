@@ -29,7 +29,7 @@ const swipe = Vue.directive('swipe', {
 
       // eslint-disable-next-line no-param-reassign
       el.style.transition = 'top 1s ease-in-out';
-      if (touchEndTime - touchStartTime < 150) {
+      if (touchEndTime - touchStartTime < 500) {
         if (endPosition < startingPosition) {
           // eslint-disable-next-line no-param-reassign
           el.style.top = '0px';
