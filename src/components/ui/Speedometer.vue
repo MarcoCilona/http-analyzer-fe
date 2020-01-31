@@ -5,7 +5,7 @@ div(ref='canvasWrapper' style='position: relative')
   span.fs-14(ref='good', style='position: relative') 800
   canvas(ref='myCanvas' height='200')
   .direction-column.value.std_black--text.fill-width.align-center.fill-height.fw-600
-    .fs-30.text-align-center {{ value }}
+    .fs-30.text-align-center.mt-n10 {{ value }}
     .fs-25.text-align-center {{ valueText }}
 </template>
 
@@ -177,22 +177,15 @@ export default class Speedometer extends Vue {
       if (this.value <= rangeColor.value) circleColor = rangeColor.color;
     });
 
-    let foundValue: boolean = false;
-    this.rangeMap.filter((val: any) => {
-      if (val.percentage === (this.value * 100) / 1000 && !foundValue) {
-        this.ctx.beginPath();
-        this.ctx.lineWidth = 10;
-        this.ctx.strokeStyle = circleColor;
-        this.ctx.fillStyle = '#ffffff';
-        this.ctx.arc(val.x, val.y, 7, 0, 2 * Math.PI);
-        this.ctx.stroke();
-        this.ctx.fill();
-
-        foundValue = true;
-        return true;
-      }
-      return false;
-    });
+    const value: number = (this.value * 100) / 1000;
+    const valuedFound = this.rangeMap.reduce((prev: any, current: any) => (Math.abs(current.percentage - value) < Math.abs(prev.percentage - value) ? current : prev));
+    this.ctx.beginPath();
+    this.ctx.lineWidth = 10;
+    this.ctx.strokeStyle = circleColor;
+    this.ctx.fillStyle = '#ffffff';
+    this.ctx.arc(valuedFound.x, valuedFound.y, 7, 0, 2 * Math.PI);
+    this.ctx.stroke();
+    this.ctx.fill();
   }
 
   @Watch('value')

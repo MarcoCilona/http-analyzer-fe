@@ -33,8 +33,8 @@ export function generateRequest(request: any) {
 
   return {
     data: {
-      first_interaction: 500,
-      page_load: 700,
+      first_interaction: Math.floor(Math.random() * 1000) + 1,
+      page_load: Math.floor(Math.random() * 1000) + 1,
       request: {
         domain: request.url,
         method: request.method,

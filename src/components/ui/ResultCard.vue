@@ -1,7 +1,7 @@
 <template lang="pug">
 .card_container.grey_medium.br-4.pv-2
   .row.fs-20.uppercase.mb-10
-    .ph-2 {{ title ? title : '-'}}
+    .ph-2.grey--text {{ title ? title : '-'}}
   slot(name='content')
 </template>
 

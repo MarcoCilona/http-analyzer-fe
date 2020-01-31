@@ -5,7 +5,7 @@
       ResultCardRow(title='Domain', :value='results.data.request.domain')
       ResultCardRow(title='Scheme', :value='results.data.request.scheme')
       ResultCardRow(title='Path', :value='results.data.request.path')
-  ResultCard.ml-5(v-for='(response, index) in results.data.response', :key='index', title='Url info')
+  ResultCard.ml-5(v-for='(response, index) in results.data.response', :key='index', title='Response')
     template(#content)
       ResultCardRow(hide-title, :value='response.http_version_string + " " + response.status_code')
       ResultCardRow(hide-title, :value='"Date: " + response.request_date')
@@ -14,10 +14,10 @@
     template(#content)
       .mt-10.ph-5.fs-24.grey--text.fw-700
         .row.mb-10 Timing analysis
-        Speedometer(:value='results.data.page_load', key=0)
+        Speedometer(:value='results.data.page_load', :key='results.data.page_load')
         .row.mt-2.align-center Page load
         .row.mt-2.align-center.black_light--text {{ results.data.page_load / 1000 }}s
-        Speedometer(:value='results.data.first_interaction', key=1)
+        Speedometer(:value='results.data.first_interaction', :key='results.data.first_interaction')
         .row.mt-2.align-center First interaction
         .row.mt-2.align-center.black_light--text {{ results.data.first_interaction / 1000 }}s
 </template>
