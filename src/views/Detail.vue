@@ -3,7 +3,7 @@ PageLayout(:share-link='shareLink', :show-bottom-sheet='!!requestId')
   template(#request-form)
     Search(hide-submit-button)
   template(#request-results)
-    Results(:id-request='requestId')
+    Results(v-if='requestId !== ""', :id-request='requestId', :id-speed-request='speedRequestId')
 </template>
 
 <script lang="ts">
@@ -25,9 +25,12 @@ import Results from './Results.vue';
 export default class Detail extends Vue {
   requestId: string = '';
   shareLink?: string = '';
+
+  // For the demo the speedRequest in detail page will be always the same
+  speedRequestId: string = '1gsi3i';
   created() {
     this.requestId = this.$route.params.idRequest;
-    this.shareLink = `${window.location.href}/${this.requestId}`;
+    this.shareLink = `${window.location.href}`;
   }
 }
 </script>
