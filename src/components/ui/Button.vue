@@ -16,6 +16,7 @@ export default class Button extends Vue {
 
 <style lang="scss" scoped>
 .button-custom-style {
+  display: inline-table;
   border: none;
   box-shadow: none;
   cursor: pointer;
