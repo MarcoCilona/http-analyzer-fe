@@ -1,5 +1,5 @@
 <template lang="pug">
-.grey_medium.pa-2.br-4.width-80.d-flex.search-bar
+.grey_medium.pa-2.br-4.d-flex.search-bar
   Select(@selected='method = $event')
   Input.mh-4(@change='url = $event')
   Button(v-if='!hideSubmitButton', @send-request='handleSendRequest')
@@ -39,3 +39,15 @@ export default class Search extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.search-bar {
+  width: 90%;
+}
+
+@media only screen and (min-width: 425px) {
+  .search-bar {
+    width: 30%;
+  }
+}
+</style>

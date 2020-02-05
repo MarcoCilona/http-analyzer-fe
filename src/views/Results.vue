@@ -1,5 +1,5 @@
 <template lang="pug">
-.row(v-if='results && speedResults')
+.row.results(v-if='results && speedResults')
   ResultCard(title='Url info')
     template(#content)
       ResultCardRow(title='Domain', :value='results.data.request.domain')
@@ -70,3 +70,11 @@ export default class Results extends Vue {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@media only screen and (min-width: 425px) {
+  .results {
+    justify-content: center;
+  }
+}
+</style>
